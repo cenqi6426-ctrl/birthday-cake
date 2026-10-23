@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雅雅生日快乐 · 星河蛋糕</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%; height: 100%; overflow: hidden;
+    background: #000;
+    font-family: 'Inter', -apple-system, 'Microsoft YaHei', sans-serif;
+    cursor: none;
+    color: #fff;
+  }
+
+  /* 视频背景层 */
+  .video-stage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  video {
+    max-width: 85vw;
+    max-height: 75vh;
+    width: auto;
+    height: auto;
+    mask-image: radial-gradient(ellipse 70% 70% at center, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at center, black 40%, transparent 100%);
+    transition: transform 0.4s ease-out;
+    filter: contrast(1.05) saturate(1.1);
+  }
+
+  /* 底部渐变（和纯黑融合） */
+  .bottom-fade {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40vh;
+    background: linear-gradient(to top, #000 0%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* 顶部渐变 */
+  .top-fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20vh;
+    background: linear-gradient(to bottom, #000 0%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* 滚动文字条 */
+  .marquee {
+    position: fixed;
+    bottom: 12vh;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    overflow: hidden;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .marquee-track {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+  }
+  .marquee-text {
+    font-family: 'Instrument Serif', 'Georgia', serif;
+    font-style: italic;
+    font-size: clamp(24px, 4vw, 48px);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+  }
+  .marquee-text .dot {
+    margin: 0 40px;
+    color: rgba(255, 255, 255, 0.3);
+    font-style: normal;
+  }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* 顶部小标题 */
+  .top-label {
+    position: fixed;
+    top: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+  }
+
+  /* 自定义鼠标 */
+  .cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s;
+  }
+
+  /* 鼠标拖尾粒子 */
+  .cursor-particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9;
+  }
+  .cursor-particles span {
+    position: absolute;
+    border-radius: 50%;
+    animation: particleFade 1s ease-out forwards;
+  }
+  @keyframes particleFade {
+    0% { opacity: 1; transform: translate(0, 0) scale(1); }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0); }
+  }
+
+  .wish-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    font-family: 'Instrument Serif', 'Georgia', serif;
+    font-style: italic;
+    font-size: clamp(24px, 3vw, 36px);
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0 60px rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease;
+  }
+  .wish-text.show { opacity: 1; }
+
+  @media (max-width: 768px) {
+    video { max-width: 95vw; max-height: 65vh; }
+    .marquee { bottom: 10vh; }
+  }
+</style>
+</head>
+<body>
+
+<div class="video-stage">
+  <video id="cakeVideo" autoplay loop muted playsinline>
+    <source src="星河蛋糕.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="top-fade"></div>
+<div class="bottom-fade"></div>
+
+<div class="top-label">HAPPY BIRTHDAY</div>
+
+<!-- 滚动文字 -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-text">
+      雅雅生日快乐<span class="dot">✦</span>愿你所愿皆星河<span class="dot">✦</span>岁岁常欢愉<span class="dot">✦</span>万事皆胜意<span class="dot">✦</span>
+    </span>
+    <span class="marquee-text">
+      雅雅生日快乐<span class="dot">✦</span>愿你所愿皆星河<span class="dot">✦</span>岁岁常欢愉<span class="dot">✦</span>万事皆胜意<span class="dot">✦</span>
+    </span>
+  </div>
+</div>
+
+<div class="wish-text" id="wishText">愿望，已送达星河</div>
+
+<div class="cursor-particles" id="cursorParticles"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<script>
+  const video = document.getElementById('cakeVideo');
+  const cursorDot = document.getElementById('cursorDot');
+  const cursorRing = document.getElementById('cursorRing');
+  const particleContainer = document.getElementById('cursorParticles');
+
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+  let lastParticleTime = 0;
+  let isBlownOut = false;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    cursorDot.style.left = mouseX + 'px';
+    cursorDot.style.top = mouseY + 'px';
+
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    const offsetX = (mouseX - centerX) / centerX;
+    const offsetY = (mouseY - centerY) / centerY;
+    video.style.transform = `translate(${offsetX * -10}px, ${offsetY * -8}px)`;
+
+    const now = Date.now();
+    if (now - lastParticleTime > 80) {
+      lastParticleTime = now;
+      createParticle(mouseX, mouseY);
+    }
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  function createParticle(x, y) {
+    const p = document.createElement('span');
+    const size = Math.random() * 4 + 1;
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.left = x + 'px';
+    p.style.top = y + 'px';
+    p.style.background = 'rgba(255,255,255,0.8)';
+    p.style.setProperty('--dx', (Math.random() - 0.5) * 30 + 'px');
+    p.style.setProperty('--dy', (Math.random() - 0.5) * 30 + 'px');
+    particleContainer.appendChild(p);
+    setTimeout(() => p.remove(), 1000);
+  }
+
+  document.addEventListener('mousedown', () => {
+    cursorRing.style.width = '45px';
+    cursorRing.style.height = '45px';
+  });
+  document.addEventListener('mouseup', () => {
+    cursorRing.style.width = '30px';
+    cursorRing.style.height = '30px';
+  });
+
+  document.addEventListener('click', () => {
+    if (!isBlownOut) {
+      isBlownOut = true;
+      video.pause();
+      document.getElementById('wishText').classList.add('show');
+    } else {
+      isBlownOut = false;
+      video.play();
+      document.getElementById('wishText').classList.remove('show');
+    }
+  });
+</script>
+
+</body>
+</html>
