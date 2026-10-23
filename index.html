@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>闆呴泤鐢熸棩蹇箰 路 鏄熸渤铔嬬硶</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>鉁?/text></svg>">
+<title>雅雅生日快乐 · 星河蛋糕</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body {
@@ -15,7 +15,6 @@
     color: #fff;
   }
 
-  /* 瑙嗛鑳屾櫙灞?*/
   .video-stage {
     position: fixed;
     inset: 0;
@@ -26,7 +25,7 @@
   }
   video {
     max-width: 85vw;
-    max-height: 75vh;
+    max-height: 70vh;
     width: auto;
     height: auto;
     mask-image: radial-gradient(ellipse 70% 70% at center, black 40%, transparent 100%);
@@ -35,36 +34,27 @@
     filter: contrast(1.05) saturate(1.1);
   }
 
-  /* 搴曢儴娓愬彉锛堝拰绾粦铻嶅悎锛?*/
   .bottom-fade {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     height: 40vh;
     background: linear-gradient(to top, #000 0%, transparent 100%);
     z-index: 2;
     pointer-events: none;
   }
-
-  /* 椤堕儴娓愬彉 */
   .top-fade {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 20vh;
     background: linear-gradient(to bottom, #000 0%, transparent 100%);
     z-index: 2;
     pointer-events: none;
   }
 
-  /* 婊氬姩鏂囧瓧鏉?*/
   .marquee {
     position: fixed;
-    bottom: 12vh;
-    left: 0;
-    right: 0;
+    bottom: 10vh;
+    left: 0; right: 0;
     z-index: 10;
     overflow: hidden;
     white-space: nowrap;
@@ -75,16 +65,16 @@
     animation: scroll 20s linear infinite;
   }
   .marquee-text {
-    font-family: 'Instrument Serif', 'Georgia', serif;
+    font-family: 'Georgia', serif;
     font-style: italic;
-    font-size: clamp(24px, 4vw, 48px);
+    font-size: clamp(22px, 4vw, 44px);
     font-weight: 400;
     letter-spacing: 0.05em;
     color: rgba(255, 255, 255, 0.9);
     text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
   }
   .marquee-text .dot {
-    margin: 0 40px;
+    margin: 0 30px;
     color: rgba(255, 255, 255, 0.3);
     font-style: normal;
   }
@@ -93,7 +83,6 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* 椤堕儴灏忔爣棰?*/
   .top-label {
     position: fixed;
     top: 5vh;
@@ -107,11 +96,9 @@
     pointer-events: none;
   }
 
-  /* 鑷畾涔夐紶鏍?*/
   .cursor-dot {
     position: fixed;
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 50%;
     pointer-events: none;
@@ -120,42 +107,22 @@
   }
   .cursor-ring {
     position: fixed;
-    width: 30px;
-    height: 30px;
+    width: 30px; height: 30px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     pointer-events: none;
     z-index: 999;
     transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s;
-  }
-
-  /* 榧犳爣鎷栧熬绮掑瓙 */
-  .cursor-particles {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9;
-  }
-  .cursor-particles span {
-    position: absolute;
-    border-radius: 50%;
-    animation: particleFade 1s ease-out forwards;
-  }
-  @keyframes particleFade {
-    0% { opacity: 1; transform: translate(0, 0) scale(1); }
-    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0); }
   }
 
   .wish-text {
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     z-index: 20;
-    font-family: 'Instrument Serif', 'Georgia', serif;
+    font-family: 'Georgia', serif;
     font-style: italic;
-    font-size: clamp(24px, 3vw, 36px);
+    font-size: clamp(22px, 3vw, 32px);
     letter-spacing: 0.1em;
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 0 0 60px rgba(255, 255, 255, 0.5);
@@ -166,8 +133,8 @@
   .wish-text.show { opacity: 1; }
 
   @media (max-width: 768px) {
-    video { max-width: 95vw; max-height: 65vh; }
-    .marquee { bottom: 10vh; }
+    video { max-width: 95vw; max-height: 60vh; }
+    .marquee { bottom: 8vh; }
   }
 </style>
 </head>
@@ -175,7 +142,7 @@
 
 <div class="video-stage">
   <video id="cakeVideo" autoplay loop muted playsinline>
-    <source src="鏄熸渤铔嬬硶.mp4" type="video/mp4">
+    <source src="cake.mp4" type="video/mp4">
   </video>
 </div>
 
@@ -184,21 +151,18 @@
 
 <div class="top-label">HAPPY BIRTHDAY</div>
 
-<!-- 婊氬姩鏂囧瓧 -->
 <div class="marquee">
   <div class="marquee-track">
     <span class="marquee-text">
-      闆呴泤鐢熸棩蹇箰<span class="dot">鉁?/span>鎰夸綘鎵€鎰跨殕鏄熸渤<span class="dot">鉁?/span>宀佸瞾甯告鎰?span class="dot">鉁?/span>涓囦簨鐨嗚儨鎰?span class="dot">鉁?/span>
+      雅雅生日快乐<span class="dot">✦</span>愿你所愿皆星河<span class="dot">✦</span>岁岁常欢愉<span class="dot">✦</span>万事皆胜意<span class="dot">✦</span>
     </span>
     <span class="marquee-text">
-      闆呴泤鐢熸棩蹇箰<span class="dot">鉁?/span>鎰夸綘鎵€鎰跨殕鏄熸渤<span class="dot">鉁?/span>宀佸瞾甯告鎰?span class="dot">鉁?/span>涓囦簨鐨嗚儨鎰?span class="dot">鉁?/span>
+      雅雅生日快乐<span class="dot">✦</span>愿你所愿皆星河<span class="dot">✦</span>岁岁常欢愉<span class="dot">✦</span>万事皆胜意<span class="dot">✦</span>
     </span>
   </div>
 </div>
 
-<div class="wish-text" id="wishText">鎰挎湜锛屽凡閫佽揪鏄熸渤</div>
-
-<div class="cursor-particles" id="cursorParticles"></div>
+<div class="wish-text" id="wishText">愿望，已送达星河</div>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -206,31 +170,20 @@
   const video = document.getElementById('cakeVideo');
   const cursorDot = document.getElementById('cursorDot');
   const cursorRing = document.getElementById('cursorRing');
-  const particleContainer = document.getElementById('cursorParticles');
 
   let mouseX = 0, mouseY = 0;
   let ringX = 0, ringY = 0;
-  let lastParticleTime = 0;
   let isBlownOut = false;
 
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-
     cursorDot.style.left = mouseX + 'px';
     cursorDot.style.top = mouseY + 'px';
 
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    const offsetX = (mouseX - centerX) / centerX;
-    const offsetY = (mouseY - centerY) / centerY;
-    video.style.transform = `translate(${offsetX * -10}px, ${offsetY * -8}px)`;
-
-    const now = Date.now();
-    if (now - lastParticleTime > 80) {
-      lastParticleTime = now;
-      createParticle(mouseX, mouseY);
-    }
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2;
+    video.style.transform = `translate(${(mouseX-cx)/cx * -10}px, ${(mouseY-cy)/cy * -8}px)`;
   });
 
   function animateRing() {
@@ -241,29 +194,6 @@
     requestAnimationFrame(animateRing);
   }
   animateRing();
-
-  function createParticle(x, y) {
-    const p = document.createElement('span');
-    const size = Math.random() * 4 + 1;
-    p.style.width = size + 'px';
-    p.style.height = size + 'px';
-    p.style.left = x + 'px';
-    p.style.top = y + 'px';
-    p.style.background = 'rgba(255,255,255,0.8)';
-    p.style.setProperty('--dx', (Math.random() - 0.5) * 30 + 'px');
-    p.style.setProperty('--dy', (Math.random() - 0.5) * 30 + 'px');
-    particleContainer.appendChild(p);
-    setTimeout(() => p.remove(), 1000);
-  }
-
-  document.addEventListener('mousedown', () => {
-    cursorRing.style.width = '45px';
-    cursorRing.style.height = '45px';
-  });
-  document.addEventListener('mouseup', () => {
-    cursorRing.style.width = '30px';
-    cursorRing.style.height = '30px';
-  });
 
   document.addEventListener('click', () => {
     if (!isBlownOut) {
@@ -280,4 +210,3 @@
 
 </body>
 </html>
-
