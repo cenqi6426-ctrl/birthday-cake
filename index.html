@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>雅雅生日快乐 · 星河蛋糕</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+<title>闆呴泤鐢熸棩蹇箰 路 鏄熸渤铔嬬硶</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>鉁?/text></svg>">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body {
@@ -15,7 +15,7 @@
     color: #fff;
   }
 
-  /* 视频背景层 */
+  /* 瑙嗛鑳屾櫙灞?*/
   .video-stage {
     position: fixed;
     inset: 0;
@@ -35,7 +35,7 @@
     filter: contrast(1.05) saturate(1.1);
   }
 
-  /* 底部渐变（和纯黑融合） */
+  /* 搴曢儴娓愬彉锛堝拰绾粦铻嶅悎锛?*/
   .bottom-fade {
     position: fixed;
     bottom: 0;
@@ -47,7 +47,7 @@
     pointer-events: none;
   }
 
-  /* 顶部渐变 */
+  /* 椤堕儴娓愬彉 */
   .top-fade {
     position: fixed;
     top: 0;
@@ -59,7 +59,7 @@
     pointer-events: none;
   }
 
-  /* 滚动文字条 */
+  /* 婊氬姩鏂囧瓧鏉?*/
   .marquee {
     position: fixed;
     bottom: 12vh;
@@ -93,7 +93,7 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* 顶部小标题 */
+  /* 椤堕儴灏忔爣棰?*/
   .top-label {
     position: fixed;
     top: 5vh;
@@ -107,7 +107,7 @@
     pointer-events: none;
   }
 
-  /* 自定义鼠标 */
+  /* 鑷畾涔夐紶鏍?*/
   .cursor-dot {
     position: fixed;
     width: 6px;
@@ -130,7 +130,7 @@
     transition: width 0.2s, height 0.2s;
   }
 
-  /* 鼠标拖尾粒子 */
+  /* 榧犳爣鎷栧熬绮掑瓙 */
   .cursor-particles {
     position: fixed;
     inset: 0;
@@ -175,7 +175,7 @@
 
 <div class="video-stage">
   <video id="cakeVideo" autoplay loop muted playsinline>
-    <source src="星河蛋糕.mp4" type="video/mp4">
+    <source src="鏄熸渤铔嬬硶.mp4" type="video/mp4">
   </video>
 </div>
 
@@ -184,19 +184,19 @@
 
 <div class="top-label">HAPPY BIRTHDAY</div>
 
-<!-- 滚动文字 -->
+<!-- 婊氬姩鏂囧瓧 -->
 <div class="marquee">
   <div class="marquee-track">
     <span class="marquee-text">
-      雅雅生日快乐<span class="dot">✦</span>愿你所愿皆星河<span class="dot">✦</span>岁岁常欢愉<span class="dot">✦</span>万事皆胜意<span class="dot">✦</span>
+      闆呴泤鐢熸棩蹇箰<span class="dot">鉁?/span>鎰夸綘鎵€鎰跨殕鏄熸渤<span class="dot">鉁?/span>宀佸瞾甯告鎰?span class="dot">鉁?/span>涓囦簨鐨嗚儨鎰?span class="dot">鉁?/span>
     </span>
     <span class="marquee-text">
-      雅雅生日快乐<span class="dot">✦</span>愿你所愿皆星河<span class="dot">✦</span>岁岁常欢愉<span class="dot">✦</span>万事皆胜意<span class="dot">✦</span>
+      闆呴泤鐢熸棩蹇箰<span class="dot">鉁?/span>鎰夸綘鎵€鎰跨殕鏄熸渤<span class="dot">鉁?/span>宀佸瞾甯告鎰?span class="dot">鉁?/span>涓囦簨鐨嗚儨鎰?span class="dot">鉁?/span>
     </span>
   </div>
 </div>
 
-<div class="wish-text" id="wishText">愿望，已送达星河</div>
+<div class="wish-text" id="wishText">鎰挎湜锛屽凡閫佽揪鏄熸渤</div>
 
 <div class="cursor-particles" id="cursorParticles"></div>
 <div class="cursor-dot" id="cursorDot"></div>
@@ -280,3 +280,4 @@
 
 </body>
 </html>
+
